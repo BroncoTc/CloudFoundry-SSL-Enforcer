@@ -1,0 +1,9 @@
+applications:
+- path: .
+  memory: 128M
+  instances: 1
+  domain: broncotc.com
+  name: pythonssltest
+  host: blogtest
+  disk_quota: 1024M
+  buildpack: python_buildpack
