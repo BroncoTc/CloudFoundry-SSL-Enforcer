@@ -2,8 +2,8 @@ applications:
 - path: .
   memory: 128M
   instances: 1
-  domain: broncotc.com
+  domain: your domain (e.g. broncotc.com)
   name: pythonssltest
-  host: blogtest
+  host: your sumdomain (e.g. blogtest)
   disk_quota: 1024M
   buildpack: python_buildpack
