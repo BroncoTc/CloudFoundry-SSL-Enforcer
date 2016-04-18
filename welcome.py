@@ -4,13 +4,20 @@ from flask import Flask, request, redirect
 app = Flask(__name__)
 
 
-@app.route('/')
-def Welcome():
-    return str(request.headers)
-    # return app.send_static_file('index.html')
+@app.route('/', defaults={'path': ''})
+@app.route('/<path:path>')
+def catch_all(path):
+    if path == "":
+        newpath = "index.html"
+    else:
+        newpath = path
+    if request.headers['$Wssc'] == "https":
+        return app.send_static_file(newpath)
+    else:
+        return redirect("https://" + request.headers['Host'] + "/" + newpath)
 
 
 port = os.getenv('PORT', '5000')
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=int(port),debug=True)
+    app.run(host='0.0.0.0', port=int(port), debug=True)
